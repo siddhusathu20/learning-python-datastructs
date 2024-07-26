@@ -1,0 +1,41 @@
+from ss20_datastructs import SinglyLinkedList
+
+linky = SinglyLinkedList(1, 2, 3, 4)
+print(linky)
+linky.append(7)
+print(linky)
+print(linky.get(0), linky.get(2), linky.get(4))
+print(linky.get(1), linky.get(3))
+print(linky.get(5), linky.get(6), linky.get(7))
+try:
+    for _ in range(6):
+        print(linky.pop(), linky)
+except IndexError as e:
+    print("IndexError:", e)
+for i in range(2, 13, 2):
+    linky.append(i)
+print(linky)
+print(len(linky))
+print(tuple(linky.to_list()))
+for k in linky:
+    print(k)
+print(linky)
+print(linky.delete(2))
+print(linky)
+print(linky.delete(4))
+print(linky)
+print(linky.delete(0))
+print(linky)
+print(linky.delete(1))
+print(linky)
+linky.insert(1, 0)
+print(linky)
+linky.insert(7, 2)
+print(linky)
+print(linky.get(2))
+linky.insert(16, 3)
+print(linky)
+linky.insert(20, 4)
+print(linky)
+print(linky.get(5))
+print(linky.peek())
