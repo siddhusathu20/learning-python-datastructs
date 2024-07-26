@@ -20,3 +20,5 @@ except IndexError as e:
     print("IndexError:", e)
 print(stack.is_full())
 print(stack.is_empty())
+for k in stack:
+    print(k)
