@@ -21,7 +21,7 @@ for i in range(2, 13, 2):
 print(linky)
 print(len(linky))
 print(list(linky))
-print(tuple(list(linky)))
+print(tuple(linky))
 for k in linky:
     print(k)
 print(linky, linky.get_end())
@@ -44,3 +44,24 @@ linky.insert(20, 4)
 print(linky)
 print(linky.get(5))
 print(linky.get_end())
+linky.set(3, 72)
+print(linky)
+linky.set(0, 25)
+print(linky)
+linky.set(5, 256)
+print(linky)
+linky.set(1, 20)
+print(linky)
+try:
+    linky.set(6, 512)
+except IndexError as e:
+    print("IndexError:", e)
+print(linky.index(72))
+print(linky.index(20))
+print(linky.indices(20))
+print(linky.indices(128))
+try:
+    print(linky.index(128))
+except ValueError as e:
+    print("ValueError:", e)
+print(linky)

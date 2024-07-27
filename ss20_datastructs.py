@@ -306,6 +306,28 @@ class SinglyLinkedList:
             elif current_node.pos >= index:
                 current_node.pos += 1
             current_node = current_node.next
+    
+    def set(self, index, value):
+        current_node = self.start
+        if index >= self.size or index < 0:
+            raise IndexError("Invalid index")
+        while current_node is not None:
+            if current_node.pos == index:
+                current_node.data = value
+            current_node = current_node.next
+    
+    def index(self, element):
+        for x in range(self.size):
+            if self[x] == element:
+                return x
+        raise ValueError("Element not found")
+    
+    def indices(self, element):
+        indices = []
+        for x in range(self.size):
+            if self[x] == element:
+                indices.append(x)
+        return indices
 
 
 class DoublyLinkedList:
@@ -452,3 +474,25 @@ class DoublyLinkedList:
             elif current_node.pos >= index:
                 current_node.pos += 1
             current_node = current_node.next
+    
+    def set(self, index, value):
+        current_node = self.start
+        if index >= self.size or index < 0:
+            raise IndexError("Invalid index")
+        while current_node is not None:
+            if current_node.pos == index:
+                current_node.data = value
+            current_node = current_node.next
+    
+    def index(self, element):
+        for x in range(self.size):
+            if self[x] == element:
+                return x
+        raise ValueError("Element not found")
+    
+    def indices(self, element):
+        indices = []
+        for x in range(self.size):
+            if self[x] == element:
+                indices.append(x)
+        return indices
