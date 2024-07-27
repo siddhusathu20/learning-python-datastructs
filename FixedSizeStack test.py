@@ -22,3 +22,6 @@ print(stack.is_full())
 print(stack.is_empty())
 for k in stack:
     print(k)
+print("---")
+for n in stack.iter_top():
+    print(n)

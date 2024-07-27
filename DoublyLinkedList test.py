@@ -1,7 +1,8 @@
-from ss20_datastructs import SinglyLinkedList
+from ss20_datastructs import DoublyLinkedList
 
-linky = SinglyLinkedList(1, 2, 3, 4)
-print(linky)
+linky = DoublyLinkedList(1, 2, 3, 4)
+print(list(linky))
+print(repr(linky))
 linky.append(7)
 print(linky)
 print(linky[0], linky[2], linky[4])
@@ -11,6 +12,10 @@ try:
     print(linky[5], linky[6], linky[7])
 except IndexError as e:
     print("IndexError:", e)
+print(linky[-1], linky[-3], linky[-5])
+print(linky[-2], linky[-4])
+print(linky.get(-3))
+print(linky.get(-7))
 try:
     for _ in range(6):
         print(linky.pop(), linky)
@@ -20,8 +25,7 @@ for i in range(2, 13, 2):
     linky.append(i)
 print(linky)
 print(len(linky))
-print(list(linky))
-print(tuple(list(linky)))
+print(tuple(linky))
 for k in linky:
     print(k)
 print(linky, linky.get_end())
@@ -38,6 +42,7 @@ print(linky)
 linky.insert(7, 2)
 print(linky)
 print(linky.get(2))
+print(linky[0], linky[2])
 linky.insert(16, 3)
 print(linky)
 linky.insert(20, 4)
