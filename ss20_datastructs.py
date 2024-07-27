@@ -482,6 +482,12 @@ class DoublyLinkedList:
                 current_node.pos += 1
             current_node = current_node.next
     
+    def append_left(self, element):
+        self.insert(element, 0)
+    
+    def pop_left(self):
+        return self.delete(0)
+    
     def set(self, index, value):
         current_node = self.start
         if index >= self.size or index < 0:

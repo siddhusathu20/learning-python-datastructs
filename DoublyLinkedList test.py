@@ -70,3 +70,6 @@ try:
 except ValueError as e:
     print("ValueError:", e)
 print(linky)
+print(linky.pop_left(), linky)
+linky.append_left(-7)
+print(linky)
