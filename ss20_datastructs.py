@@ -255,6 +255,9 @@ class SinglyLinkedList:
             current_node = current_node.next
         return None
     
+    def get_end(self):
+        return self.end.data
+    
     def delete(self, index):
         current_node = self.start
         deleted_value = None
@@ -266,6 +269,8 @@ class SinglyLinkedList:
             if current_node.pos == index - 1:
                 deleted_value = current_node.next.data
                 current_node.next = current_node.next.next
+                if index == self.size - 1:
+                    self.end = current_node
                 self.size -= 1
             elif current_node.pos >= index:
                 current_node.pos -= 1
