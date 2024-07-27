@@ -1,6 +1,6 @@
 from ss20_datastructs import DoublyLinkedList
 
-linky = DoublyLinkedList(1, 2, 3, 4)
+linky = DoublyLinkedList([1, 2, 3, 4])
 print(list(linky))
 print(repr(linky))
 linky.append(7)
@@ -49,16 +49,16 @@ linky.insert(20, 4)
 print(linky)
 print(linky.get(5))
 print(linky.get_end())
-linky.set(3, 72)
+linky[3] = 72
 print(linky)
-linky.set(0, 25)
+linky[0] = 25
 print(linky)
-linky.set(5, 256)
+linky[5] = 256
 print(linky)
-linky.set(1, 20)
+linky[1] = 20
 print(linky)
 try:
-    linky.set(6, 512)
+    linky[6] = 512
 except IndexError as e:
     print("IndexError:", e)
 print(linky.index(72))
@@ -72,4 +72,21 @@ except ValueError as e:
 print(linky)
 print(linky.pop_left(), linky)
 linky.append_left(-7)
+print(linky)
+print("---")
+print(linky[1:5])
+print(linky[1:5:2])
+print(linky[:5])
+print(linky[:5:3])
+print(linky[:])
+print(linky[::2])
+print(linky[3:])
+print(linky[3::2])
+print(linky[::-1])
+print(linky[::-2])
+print(linky[3::-2])
+print(linky[4:1:-1])
+linky[3:] = [5, 6]
+print(linky)
+linky[1:3] = [1, 2, 3]
 print(linky)

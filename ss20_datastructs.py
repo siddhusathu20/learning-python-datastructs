@@ -5,7 +5,7 @@ class DynamicSizeStack:
     The optional arguments passed to the constructor are used as values to initialise the stack with.
     """
 
-    def __init__(self, *values):
+    def __init__(self, values = ()):
         self._stack = list(values)
     
     def __len__(self):
@@ -48,7 +48,7 @@ class FixedSizeStack:
     All arguments following it are elements used to initialise the stack.
     """
 
-    def __init__(self, size: int, *values):
+    def __init__(self, size: int, values = ()):
         self._stack = list(values)
         self.size = size
         if len(values) > size:
@@ -98,7 +98,7 @@ class UnboundedListQueue:
     The optional arguments passed to the constructor are used as values to initialise the queue with.
     """
 
-    def __init__(self, *values):
+    def __init__(self, values = ()):
         self._queue = list(values)
     
     def __len__(self):
@@ -137,7 +137,7 @@ class BoundedListQueue:
     All arguments following it are elements used to initialise the queue.
     """
 
-    def __init__(self, size: int, *values):
+    def __init__(self, size: int, values = ()):
         self._queue = list(values)
         self.size = size
         if len(values) > size:
@@ -194,7 +194,7 @@ class SinglyLinkedList:
             self.pos = pos
             self.next = None
 
-    def __init__(self, *values):
+    def __init__(self, values = ()):
         self.start = None
         self.end = None
         self.size = 0
@@ -227,12 +227,28 @@ class SinglyLinkedList:
             current_node = current_node.next
     
     def __getitem__(self, index):
+        if isinstance(index, slice):
+            return DoublyLinkedList(list(self)[index])
         current_node = self.start
         while current_node is not None:
             if current_node.pos == index:
                 return current_node.data
             current_node = current_node.next
         raise IndexError("Could not get the element at that index")
+    
+    def __setitem__(self, index, value):
+        if isinstance(index, slice):
+            as_list = list(self)
+            as_list[index] = value
+            self.__init__(as_list)
+            return
+        current_node = self.start
+        if index >= self.size or index < 0:
+            raise IndexError("Invalid index")
+        while current_node is not None:
+            if current_node.pos == index:
+                current_node.data = value
+            current_node = current_node.next
     
     def append(self, element):
         if self.end is None:
@@ -314,15 +330,6 @@ class SinglyLinkedList:
                 current_node.pos += 1
             current_node = current_node.next
     
-    def set(self, index, value):
-        current_node = self.start
-        if index >= self.size or index < 0:
-            raise IndexError("Invalid index")
-        while current_node is not None:
-            if current_node.pos == index:
-                current_node.data = value
-            current_node = current_node.next
-    
     def index(self, element):
         for x in range(self.size):
             if self[x] == element:
@@ -349,7 +356,7 @@ class DoublyLinkedList:
             self.pos = pos
             self.next = None
 
-    def __init__(self, *values):
+    def __init__(self, values = ()):
         self.start = None
         self.end = None
         self.size = 0
@@ -384,6 +391,8 @@ class DoublyLinkedList:
             current_node = current_node.next
     
     def __getitem__(self, index):
+        if isinstance(index, slice):
+            return DoublyLinkedList(list(self)[index])
         if index >= 0:
             current_node = self.start
             while current_node is not None:
@@ -398,6 +407,20 @@ class DoublyLinkedList:
                 if current_node.pos == pos:
                     return current_node.data
                 current_node = current_node.prev
+    
+    def __setitem__(self, index, value):
+        if isinstance(index, slice):
+            as_list = list(self)
+            as_list[index] = value
+            self.__init__(as_list)
+            return
+        current_node = self.start
+        if index >= self.size or index < 0:
+            raise IndexError("Invalid index")
+        while current_node is not None:
+            if current_node.pos == index:
+                current_node.data = value
+            current_node = current_node.next
     
     def append(self, element):
         if self.end is None:
@@ -488,24 +511,15 @@ class DoublyLinkedList:
     def pop_left(self):
         return self.delete(0)
     
-    def set(self, index, value):
-        current_node = self.start
-        if index >= self.size or index < 0:
-            raise IndexError("Invalid index")
-        while current_node is not None:
-            if current_node.pos == index:
-                current_node.data = value
-            current_node = current_node.next
-    
     def index(self, element):
-        for x in range(self.size):
-            if self[x] == element:
-                return x
+        for i, val in enumerate(self):
+            if val == element:
+                return i
         raise ValueError("Element not found")
     
     def indices(self, element):
         indices = []
-        for x in range(self.size):
-            if self[x] == element:
-                indices.append(x)
+        for i, val in enumerate(self):
+            if val == element:
+                indices.append(i)
         return indices
