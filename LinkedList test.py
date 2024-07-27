@@ -7,6 +7,7 @@ print(linky)
 print(linky[0], linky[2], linky[4])
 print(linky[1], linky[3])
 print(linky.get(6))
+print(linky.get(7, "Error"))
 try:
     print(linky[5], linky[6], linky[7])
 except IndexError as e:

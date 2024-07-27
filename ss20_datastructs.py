@@ -259,11 +259,11 @@ class SinglyLinkedList:
             self.end = next_node
         self.size += 1
     
-    def get(self, index):
+    def get(self, index, default = None):
         try:
             return self[index]
         except IndexError:
-            return None
+            return default
     
     def pop(self):
         current_node = self.start
@@ -433,11 +433,11 @@ class DoublyLinkedList:
             self.end.prev = prev_node
         self.size += 1
     
-    def get(self, index):
+    def get(self, index, default = None):
         try:
             return self[index]
         except IndexError:
-            return None
+            return default
     
     def pop(self):
         if self.end is None:
