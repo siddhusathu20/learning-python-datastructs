@@ -20,6 +20,13 @@ except IndexError as e:
     print("IndexError:", e)
 print(queue.is_full())
 try:
+    queue.enqueue(128)
+except IndexError as e:
+    print("IndexError:", e)
+print(queue)
+queue.force_enqueue(128)
+print(queue)
+try:
     while True:
         queue.dequeue()
         print(queue)

@@ -161,6 +161,13 @@ class BoundedListQueue:
             raise IndexError("Queue full")
         self._queue.append(element)
     
+    def force_enqueue(self, element):
+        if self.is_full():
+            self.dequeue()
+            self.enqueue(element)
+        else:
+            self.enqueue(element)
+    
     def dequeue(self):
         if self.is_empty():
             raise IndexError("Queue empty")
